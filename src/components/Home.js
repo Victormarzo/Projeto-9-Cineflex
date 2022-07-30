@@ -7,13 +7,8 @@ export default function Home(){
 
     return(
         <>
-        <Title>Selecione o filme</Title>
+        <Title >Selecione o filme </Title>
         <FilmList></FilmList>
         </>
     )
 }
-const Conteudo=styled.div`
-    height:5000px
-    
-
-`

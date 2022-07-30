@@ -1,7 +1,7 @@
 import styled from "styled-components"
-export default function Frame({children}){
+export default function Frame({children,small}){
     return(
-        <Moldura>
+        <Moldura small={small}>
             <img src={children}/>
         </Moldura>
         
@@ -9,18 +9,18 @@ export default function Frame({children}){
 
 }
 const Moldura=styled.div`
-    width: 145px;
-    height: 209px;
+    width:${(props) => props.small ? "64px" :" 145px"};
+    height: ${(props) => props.small ? "89px" :" 209px"};
     background: #FFFFFF;
     box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
     border-radius: 3px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom:10px;
+    margin-bottom:${(props) => props.small ? "0" :" 10px"};
     img {
-        width: 129px;
-        height: 193px;
+        width: ${(props) => props.small ? "48px" :" 129px"};
+        height: ${(props) => props.small ? "72px" :" 193px"};
     }
 
 `
