@@ -7,13 +7,13 @@ export default function Footer({title,image,weekday,time}){
             <Frame small="small">{image}</Frame>
             <div>
             <Titulo>{title}</Titulo>
-            <Titulo>{weekday} - {time}</Titulo>
+            {weekday?<Titulo>{weekday}  {time}</Titulo>:<div></div>}
+            
             </div>
         </Container>
     )
 }
 const Container=styled.div`
-    
     height: 110px;
     bottom: 0;
     position: fixed;
@@ -25,11 +25,11 @@ const Container=styled.div`
     border: 1px solid #9EADBA;
 `
 const Titulo=styled.div`
-font-family: 'Roboto';
-font-style: normal;
-font-weight: 400;
-font-size: 22px;
-line-height: 30px;
-color: #293845;
-margin-left:15px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 30px;
+    color: #293845;
+    margin-left:15px;
 `

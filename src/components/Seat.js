@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import {useState} from "react";
-export default function Seat({children,avaliable}){
-    const [selected,setSelected]=useState("false");
+export default function Seat({children,avaliable,id}){
+    const [selected,setSelected]=useState(false);
    
     
     return(
-        <Assento onClick={() => setSelected(!selected)} avaliable={avaliable} selected={selected} >{children}</Assento>
+        <Assento onClick={() => {
+            setSelected(!selected)
+            setSeatId([...SeatId,id])
+        }} avaliable={avaliable} selected={selected} >{children}</Assento>
     )
 }
 const Assento=styled.div`

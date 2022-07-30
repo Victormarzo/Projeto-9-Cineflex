@@ -16,7 +16,9 @@ export default function FilmList(){
    
     return(
         <List>
-            {films.map(value=><Frame>{value.posterURL}</Frame>)}
+            {films.map(value=><Frame
+            key={value.id} id={value.id}
+            >{value.posterURL}</Frame>)}
 
         </List> 
     )

@@ -5,7 +5,7 @@ export default function Button({children,small}){
         <Botao small={small}>{children}</Botao>
     )
 }
-const Botao=styled.div`
+const Botao=styled.button`
 width: ${(props) => props.small ? "83px":" 225px"};
 height: 43px;
 background-color: #E8833A;
@@ -22,4 +22,6 @@ letter-spacing: 0.04em;
 color: #FFFFFF;
 margin-right: 10px;
 margin: ${(props) => props.small ? "":" auto"};
+border:0;
+
 `

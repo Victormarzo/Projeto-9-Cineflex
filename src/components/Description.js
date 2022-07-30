@@ -69,7 +69,7 @@ const Legenda=styled.div`
     
 `
 const Caixa=styled.div`
-display: flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 

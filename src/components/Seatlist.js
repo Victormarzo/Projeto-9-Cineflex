@@ -6,6 +6,9 @@ import Seat from "./Seat";
 import Description from "./Description";
 import styled from "styled-components";
 import Button from "./Button"
+import Buy from "./Buy";
+import { useParams,Link } from "react-router-dom";
+
 
 
 export default function Seatlist(){
@@ -13,27 +16,49 @@ export default function Seatlist(){
     const [films,setFilms]=useState([]);
     const [days,setDays]=useState([]);
     const [seats,setSeats]=useState([]);
+    const [nome, setNome] = useState("");
+	const [cpf, setCpf] = useState("");
+    const { seatId } = useParams();
+
+
     useEffect(() => {
-     const requisition = axios.get("https://mock-api.driven.com.br/api/v7/cineflex/showtimes/2/seats");
- 
+
+     const link=`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${seatId}/seats`;
+     const requisition = axios.get(link);
      requisition.then(answer => {
          setTime(answer.data);
          setFilms(answer.data.movie);
          setDays(answer.data.day);
          setSeats(answer.data.seats)
+         
      });
- }, []);
+ }, [seatId]);
     
+    function finishBuy(e){
+        e.preventDefault();
+
+    }
+        
 
     return(
        <>
         <Title>Selecione o(s) assento(s)</Title>
         
-        <Cinema>{seats.map(value=><Seat avaliable={value.isAvailable}>{value.name}</Seat>)}</Cinema>
+        <Cinema>{seats.map(value=><Seat key={value.id} id={value.id}
+        avaliable={value.isAvailable}>{value.name}</Seat>)}</Cinema>
         <Description></Description>
+        <Buy 
+        nome={nome}
+        setCpf={setCpf} 
+        setNome={setNome} 
+        cpf={cpf} 
+        finishBuy={finishBuy}></Buy>
         
-        <Button>Reservar assento(s)</Button>
-        <Footer time={time.name} weekday={days.weekday} image={films.posterURL} title={films.title}></Footer>
+        <Footer 
+        time={time.name} 
+        weekday={days.weekday} 
+        image={films.posterURL} 
+        title={films.title}></Footer>
         </>
     )
 }

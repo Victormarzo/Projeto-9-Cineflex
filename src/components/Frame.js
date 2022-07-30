@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
-export default function Frame({children,small}){
+export default function Frame({children,small,id}){
     return(
         <Moldura small={small}>
-            <img src={children}/>
+            <Link to={`/filme/${id}`}><img src={children}/></Link>
         </Moldura>
         
     )
