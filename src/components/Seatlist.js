@@ -7,11 +7,11 @@ import Description from "./Description";
 import styled from "styled-components";
 import Button from "./Button"
 import Buy from "./Buy";
-import { useParams,Link } from "react-router-dom";
+import { useParams,Link,useNavigate } from "react-router-dom";
 
 
 
-export default function Seatlist(){
+export default function Seatlist({ids,setInformacao,assentos,setAssentos,setIds}){
     const [time,setTime]=useState([]);
     const [films,setFilms]=useState([]);
     const [days,setDays]=useState([]);
@@ -19,7 +19,9 @@ export default function Seatlist(){
     const [nome, setNome] = useState("");
 	const [cpf, setCpf] = useState("");
     const { seatId } = useParams();
-
+    const navigate = useNavigate()
+    
+    
 
     useEffect(() => {
 
@@ -36,7 +38,25 @@ export default function Seatlist(){
     
     function finishBuy(e){
         e.preventDefault();
+        let pedido ={ ids,name:nome,cpf};
+        let dadosFinais={
+            nome:nome,
+            cpf:cpf,
+            time:time.name ,
+            title:films.title,
+            date:days.date,
+            assentos:assentos
+    
+        }
+        
+        console.log(dadosFinais)
+        setInformacao({...dadosFinais});
+       
+        const request = axios.post('https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many', pedido)
+        request.then(() => {
+            navigate("/sucesso");
 
+    })
     }
         
 
@@ -44,8 +64,8 @@ export default function Seatlist(){
        <>
         <Title>Selecione o(s) assento(s)</Title>
         
-        <Cinema>{seats.map(value=><Seat key={value.id} id={value.id}
-        avaliable={value.isAvailable}>{value.name}</Seat>)}</Cinema>
+        <Cinema>{seats.map(value=><Seat ids={ids} setAssentos={setAssentos} assentos={assentos} setIds={setIds} key={value.id} id={value.id}
+        avaliable={value.isAvailable}>{value.name}  </Seat>)}</Cinema>
         <Description></Description>
         <Buy 
         nome={nome}

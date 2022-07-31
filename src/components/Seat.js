@@ -1,14 +1,37 @@
 import styled from "styled-components";
 import {useState} from "react";
-export default function Seat({children,avaliable,id}){
+
+export default function Seat({children,avaliable,id,ids,setIds,assentos,setAssentos}){
     const [selected,setSelected]=useState(false);
-   
     
+    function repara(){
+        if(avaliable===true){
+            if(ids.includes(id)){
+                let x=ids.filter((value)=>value!==id)
+                setIds(x);
+            }else{
+                setIds([...ids,id])
+                
+            }
+            if(assentos.includes(children)){
+                let x=assentos.filter((value)=>value!==children)
+                setAssentos(x);
+            }else{
+                setAssentos([...assentos,children])
+            }
+            console.log(ids)
+        }else{
+            alert("Esse assento não está disponível");
+        }
+        
+    }
+      
     return(
         <Assento onClick={() => {
-            setSelected(!selected)
-            setSeatId([...SeatId,id])
-        }} avaliable={avaliable} selected={selected} >{children}</Assento>
+            setSelected(!selected);
+            repara();
+            
+        }} avaliable={avaliable} ids={ids} selected={selected} >{children}</Assento>
     )
 }
 const Assento=styled.div`

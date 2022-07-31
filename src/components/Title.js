@@ -11,11 +11,12 @@ const Titulo=styled.div`
     height: 110px;
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: ${(props) => props.weigth ? props.weigth :" 400"};
+    font-weight: ${(props) => props.weight ? props.weight :" 400"};
     font-size: 24px;
     line-height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: ${(props) => props.color ? props.color :" #293845"};
+    
 `
