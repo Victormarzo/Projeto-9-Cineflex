@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import React from 'react';
+import { Link } from "react-router-dom";
 export default function Header(){
     return(
         
-        <Logo>CINEFLEX</Logo>
+        <Link to={`/`}><Logo>CINEFLEX</Logo></Link>
     )
 }
 const Logo = styled.div`

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {useState} from "react";
 
-export default function Seat({children,avaliable,id,ids,setIds,assentos,setAssentos}){
+export default function Seat({children,avaliable,id,ids,setIds,assentos,poltrona,setAssentos}){
     const [selected,setSelected]=useState(false);
     
     function repara(){
@@ -13,13 +13,12 @@ export default function Seat({children,avaliable,id,ids,setIds,assentos,setAssen
                 setIds([...ids,id])
                 
             }
-            if(assentos.includes(children)){
-                let x=assentos.filter((value)=>value!==children)
-                setAssentos(x);
+            if(assentos.includes(poltrona)){
+                let v=assentos.filter((value)=>value!==poltrona)
+                setAssentos(v);
             }else{
-                setAssentos([...assentos,children])
+                setAssentos([...assentos,poltrona])
             }
-            console.log(ids)
         }else{
             alert("Esse assento não está disponível");
         }

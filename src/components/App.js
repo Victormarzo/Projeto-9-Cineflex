@@ -10,7 +10,7 @@ import Sucess from "./Sucess"
 
 
 export default function App(){
-    const [informacao,setInformacao]=useState("");
+    const [informacao,setInformacao]=useState([]);
     const [ids,setIds]=useState([]);
     const [assentos,setAssentos]=useState([]);
     

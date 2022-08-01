@@ -32,6 +32,10 @@ export default function Seatlist({ids,setInformacao,assentos,setAssentos,setIds}
          setFilms(answer.data.movie);
          setDays(answer.data.day);
          setSeats(answer.data.seats)
+         setInformacao([])
+         setIds([])
+         setAssentos([])
+
          
      });
  }, [seatId]);
@@ -49,6 +53,7 @@ export default function Seatlist({ids,setInformacao,assentos,setAssentos,setIds}
     
         }
         
+       if(assentos.length!=0){ 
         console.log(dadosFinais)
         setInformacao({...dadosFinais});
        
@@ -56,7 +61,9 @@ export default function Seatlist({ids,setInformacao,assentos,setAssentos,setIds}
         request.then(() => {
             navigate("/sucesso");
 
-    })
+    })}else{
+        alert("Selecione um assento")
+    }
     }
         
 
@@ -64,7 +71,8 @@ export default function Seatlist({ids,setInformacao,assentos,setAssentos,setIds}
        <>
         <Title>Selecione o(s) assento(s)</Title>
         
-        <Cinema>{seats.map(value=><Seat ids={ids} setAssentos={setAssentos} assentos={assentos} setIds={setIds} key={value.id} id={value.id}
+        <Cinema>{seats.map(value=><Seat ids={ids} setAssentos={setAssentos} assentos={assentos} 
+        setIds={setIds} key={value.id} id={value.id} poltrona={value.name}
         avaliable={value.isAvailable}>{value.name}  </Seat>)}</Cinema>
         <Description></Description>
         <Buy 
@@ -72,7 +80,8 @@ export default function Seatlist({ids,setInformacao,assentos,setAssentos,setIds}
         setCpf={setCpf} 
         setNome={setNome} 
         cpf={cpf} 
-        finishBuy={finishBuy}></Buy>
+        finishBuy={finishBuy}
+        ></Buy>
         
         <Footer 
         time={time.name} 
